@@ -35,36 +35,7 @@ StoreSync is designed to help users manage inventory efficiently by allowing the
 
 ---
 
-## Project Structure
 
-src/main/java/com/example/Inventory
-│
-├── config
-│ └── SecurityConfig.java
-│
-├── controller
-│ ├── AuthController.java
-│ ├── DashboardController.java
-│ ├── ProductController.java
-│ └── LoginController.java
-│
-├── model
-│ ├── User.java
-│ └── Product.java
-│
-├── repository
-│ ├── UserRepository.java
-│ └── ProductRepository.java
-│
-├── service
-│ ├── UserService.java
-│ ├── ProductService.java
-│ └── CustomUserDetailsService.java
-│
-└── InventoryApplication.java
-
-
----
 
 ## Application URLs
 
