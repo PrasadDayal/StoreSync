@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard | StoreSync </title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" th:href="@{/images/storesync.png}">
+
+</head>
+
+<body class="dashboard-body">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <div class="sidebar-logo">
+        <img th:src="@{/images/storesync.png}" alt="StoreSync Logo">
+        <span>StoreSync</span>
+    </div>
+    <ul>
+       
+    <li><a th:href="@{/dashboard}" class="active">Dashboard</a></li>
+    <li><a th:href="@{/products}">Products</a></li>
+    <li><a th:href="@{/products/add}">Add Product</a></li>
+    <li><a th:href="@{/logout}">Logout</a></li>
+    </ul>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+    <!-- DASHBOARD HEADER -->
+    <div class="dashboard-header">
+        <h1 class="project-title">StockSync</h1>
+        <p class="project-tagline">Smart Inventory Management System</p>
+
+       <h3 class="welcome-text" id="welcomeMessage">
+    Welcome, <span th:text="${username}">User</span>
+</h3>
+    </div>
+
+    <!-- SUMMARY CARDS -->
+    <div class="cards">
+        <div class="card">
+            <h3>Total Products</h3>
+            <p th:text="${totalProducts}">0</p>
+        </div>
+
+        <div class="card success">
+            <h3>OK Stock</h3>
+            <p th:text="${okStockCount}">0</p>
+        </div>
+
+        <div class="card danger">
+            <h3>Low Stock</h3>
+            <p th:text="${lowStockCount}">0</p>
+        </div>
+    </div>
+
+    <!-- INVENTORY TABLE -->
+    <div class="table-card">
+        <h2>Inventory Overview</h2>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="p : ${products}">
+                <td th:text="${p.name}">Product</td>
+                <td th:text="${p.quantity}">0</td>
+                <td>
+                    <span class="badge low" th:if="${p.quantity < 10}">LOW</span>
+                    <span class="badge ok" th:if="${p.quantity >= 10}">OK</span>
+                </td>
+            </tr>
+
+            <tr th:if="${#lists.isEmpty(products)}">
+                <td colspan="3" class="empty">No products found</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- CHART -->
+    <div class="chart-card">
+        <h2>Stock Distribution</h2>
+        <canvas id="stockChart"></canvas>
+    </div>
+
+</div>
+
+<!-- SAFE JSON DATA -->
+<script th:inline="javascript">
+/*<![CDATA[*/
+window.productNames = /*[[${productNames}]]*/ [];
+window.productQuantities = /*[[${productQuantities}]]*/ [];
+/*]]>*/
+</script>
+
+<script th:src="@{/js/dashboard.js}"></script>
+
+</body>
+</html>
