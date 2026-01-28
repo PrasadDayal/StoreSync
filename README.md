@@ -37,19 +37,6 @@ StoreSync is designed to help users manage inventory efficiently by allowing the
 
 
 
-## Application URLs
-
-| Feature       | URL              |
-|---------------|------------------|
-| Login         | /login           |
-| Register      | /register        |
-| Dashboard     | /dashboard       |
-| Products      | /products        |
-| Add Product   | /products/add    |
-| Logout        | /logout          |
-
----
-
 ## How to Run the Project
 
 1. Download or clone the project repository.
@@ -64,16 +51,10 @@ http://localhost:8082/login
 
 ---
 
-## File Upload Information
-
-All project files are uploaded together as a single compressed ZIP file. This ensures the complete project structure, source code, and resources are preserved and can be easily reviewed, executed, and evaluated.
-
----
-
 ## Author
 
 Prasad Dayal
-BE – Computer Engineering  
+Computer Engineering  
 
 ---
 
