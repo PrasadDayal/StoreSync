@@ -83,7 +83,7 @@ The platform highlights low-stock items and presents inventory summaries through
 ## How to Run the Application
 
 1. Clone or download the project repository  
-2. Create a MySQL database (e.g., `storesync`)  
+2. Create a MySQL database `inventory_db`
 3. Configure database credentials in `application.properties`  
 4. Build and run the project using Maven
 5. Access the application at:
