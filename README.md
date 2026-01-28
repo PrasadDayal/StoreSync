@@ -99,15 +99,6 @@ http://localhost:8082/login
 - Academic and learning purposes  
 - Demonstration of Spring Boot security and CRUD operations  
 
----
-
-## Resume Description (ATS-Optimized)
-
-**StoreSync – Inventory Management System | Java, Spring Boot**  
-- Designed and developed a secure inventory management application using Spring Boot and Spring Security  
-- Implemented user-specific dashboards with real-time stock monitoring and status indicators  
-- Developed CRUD operations for product management using Spring Data JPA and MySQL  
-- Applied MVC architecture, layered design, and clean coding practices  
 
 ---
 
