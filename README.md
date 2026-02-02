@@ -1,116 +1,52 @@
-# 📦 StoreSync – Inventory Management System
+# StoreSync – Inventory Management System
 
-StoreSync is a secure, scalable, and user-centric **Inventory Management System** designed to manage products and monitor stock levels in real time. The application provides **user-specific dashboards**, **stock status indicators**, and **visual insights** to support efficient inventory control and informed decision-making.
+## Problem Statement
+Small businesses often rely on manual or poorly structured systems to manage inventory, leading to stock mismanagement, lack of visibility, and operational inefficiencies.
 
----
+## Solution Overview
+StoreSync is a backend-driven inventory management system built using Spring Boot that allows businesses to manage products, suppliers, users, and stock levels with secure role-based access.
 
-## 🚀 Project Overview
+The system exposes RESTful APIs and provides a dashboard for real-time inventory monitoring.
 
-StoreSync is a full-stack Java web application developed using **Spring Boot** and **Thymeleaf**, following industry-standard **MVC architecture**.  
-It enables authenticated users to securely manage their own inventory data while ensuring data isolation and system security.  
-The platform highlights low-stock items and presents inventory summaries through an intuitive dashboard interface.
-
----
-
-## 🚀 Core Objectives
-
-- Provide a secure platform for inventory management  
-- Enable real-time tracking of product stock levels  
-- Improve decision-making using visual inventory insights  
-- Ensure user data privacy through authentication and authorization  
-
----
-
-## 🚀 Key Features
-
-- Secure authentication and authorization using **Spring Security**
-- **User-specific inventory access** with complete data isolation
-- Product management (add, view, delete)
-- Real-time **low-stock and sufficient-stock indicators**
-- Interactive dashboard displaying inventory summary
-- **Chart-based visualization** for inventory analysis
-- Secure session handling and logout functionality
-
----
-
-## Technology Stack
-
-### Backend
+## Tech Stack
 - Java
 - Spring Boot
-- Spring MVC
-- Spring Security
-- Spring Data JPA (Hibernate)
-
-### Frontend
-- Thymeleaf
-- HTML5
-- CSS3
-- JavaScript
-
-### Database
+- Spring Data JPA
 - MySQL
+- HTML, CSS, JavaScript
 
-### Build & Tools
-- Maven
-- Git
-
----
+## Features
+- Product and supplier management (CRUD operations)
+- Role-based access control (Admin / Staff)
+- Real-time inventory dashboard
+- Secure backend APIs
+- Scalable relational database design
 
 ## System Architecture
+- Controller layer handles REST API requests
+- Service layer contains business logic
+- Repository layer manages database interactions using JPA
+- MySQL used for persistent data storage
 
-- MVC (Model–View–Controller) architecture
-- Layered design:
-  - Controller Layer
-  - Service Layer
-  - Repository Layer
-- ORM-based database interaction using JPA/Hibernate
-- Secure session-based authentication mechanism
+## Database Design
+- Normalized tables for users, products, suppliers, and inventory
+- Foreign key relationships to maintain data integrity
 
----
+## Setup Instructions
+1. Clone the repository  
+   `git clone https://github.com/PrasadDayal/StoreSync.git`
 
-## Application Workflow
+2. Configure MySQL database and update credentials in `application.properties`
 
-1. User logs in using secure credentials  
-2. System authenticates the user via Spring Security  
-3. User accesses a personalized dashboard  
-4. Inventory data is fetched and displayed in real time  
-5. Low-stock products are visually highlighted  
-6. User manages products securely within their session  
+3. Run the application  
+   `mvn spring-boot:run`
 
----
+4. Access APIs using Postman or frontend UI
 
-## How to Run the Application
+## Future Enhancements
+- JWT-based authentication
+- Sales analytics and reporting
+- Demand prediction module
 
-1. Clone or download the project repository  
-2. Create a MySQL database `inventory_db`
-3. Configure database credentials in `application.properties`  
-4. Build and run the project using Maven
-5. Access the application at:
-http://localhost:8082/login
-
-
----
-
-## Use Cases
-
-- Retail inventory management  
-- Warehouse stock monitoring  
-- Academic and learning purposes  
-- Demonstration of Spring Boot security and CRUD operations  
-
-
----
-
-##  👨‍💻  Author
-
-**Prasad Dayal**  
-Computer Engineering  
-
----
-
-## License
-
-This project is developed strictly for **educational and academic purposes**.
-
-
+## Screenshots
+(Add application screenshots here)
