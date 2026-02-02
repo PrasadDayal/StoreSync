@@ -48,5 +48,4 @@ The system exposes RESTful APIs and provides a dashboard for real-time inventory
 - Sales analytics and reporting
 - Demand prediction module
 
-## Screenshots
-(Add application screenshots here)
+
