@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard | StoreSync</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="icon" type="image/png" th:href="@{/images/storesync.png}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body class="dashboard-body">
+
+<!-- SIDEBAR -->
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<!-- MAIN -->
+<div class="main">
+
+    <!-- HAMBURGER -->
+    <button class="hamburger" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- HEADER -->
+    <div class="dashboard-header">
+        <div class="header-content">
+            <h1 class="project-title">StoreSync</h1>
+            <p class="project-tagline">Smart Inventory Management System</p>
+        </div>
+        <div class="header-welcome">
+            <h3 class="welcome-text">
+                Welcome back, <span th:text="${username}">User</span>!
+            </h3>
+        </div>
+    </div>
+
+    <!-- CARDS -->
+    <div class="cards">
+        <div class="card">
+            <div class="card-icon blue"><i class="fas fa-boxes"></i></div>
+            <div class="card-info">
+                <h3>Total Products</h3>
+                <p th:text="${totalProducts}">0</p>
+            </div>
+        </div>
+
+        <div class="card success">
+            <div class="card-icon green"><i class="fas fa-check-circle"></i></div>
+            <div class="card-info">
+                <h3>OK Stock</h3>
+                <p th:text="${okStockCount}">0</p>
+            </div>
+        </div>
+
+        <div class="card danger">
+            <div class="card-icon red"><i class="fas fa-exclamation-triangle"></i></div>
+            <div class="card-info">
+                <h3>Low Stock</h3>
+                <p th:text="${lowStockCount}">0</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-card">
+        <div class="table-header">
+            <h2><i class="fas fa-list"></i> Inventory Overview</h2>
+            <a th:href="@{/products}" class="view-all-btn">View All</a>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="p : ${products}">
+                    <td data-label="Product">
+                        <div class="product-cell">
+                            <i class="fas fa-cube"></i>
+                            <span th:text="${p.name}"></span>
+                        </div>
+                    </td>
+                    <td data-label="Quantity" th:text="${p.quantity}"></td>
+                    <td data-label="Status">
+                        <span class="badge over" th:if="${p.quantity == 0}">OUT OF STOCK</span>
+                        <span class="badge low" th:if="${p.quantity > 0 and p.quantity < 10}">LOW STOCK</span>
+                        <span class="badge ok" th:if="${p.quantity >= 10}">STABLE</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- CHARTS -->
+    <div class="chart-grid">
+        <div class="chart-card">
+            <h3><i class="fas fa-chart-bar"></i> Stock Per Product</h3>
+            <canvas id="stockBarChart"></canvas>
+        </div>
+
+        <div class="chart-card">
+            <h3><i class="fas fa-chart-pie"></i> Stock Status</h3>
+            <canvas id="stockPieChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- CHART + SIDEBAR JS -->
+<script th:inline="javascript">
+const productNames = [[${productNames}]] || [];
+const productStock = [[${productStock}]] || [];
+const inStock = [[${inStock}]] || 0;
+const lowStock = [[${lowStock}]] || 0;
+const outOfStock = [[${outOfStock}]] || 0;
+
+new Chart(document.getElementById('stockBarChart'), {
+    type: 'bar',
+    data: {
+        labels: productNames,
+        datasets: [{
+            data: productStock,
+            backgroundColor: 'rgba(99, 102, 241, 0.8)',
+            borderColor: 'rgb(99, 102, 241)',
+            borderWidth: 1,
+            borderRadius: 8,
+            hoverBackgroundColor: 'rgba(99, 102, 241, 1)'
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { 
+            y: { 
+                beginAtZero: true,
+                grid: { color: 'rgba(0, 0, 0, 0.05)' }
+            },
+            x: {
+                grid: { display: false }
+            }
+        }
+    }
+});
+
+new Chart(document.getElementById('stockPieChart'), {
+    type: 'pie',
+    data: {
+        labels: ['In Stock', 'Low Stock', 'Out of Stock'],
+        datasets: [{
+            data: [inStock, lowStock, outOfStock],
+            backgroundColor: ['#10b981', '#f59e0b', '#ef4444'],
+            borderWidth: 0
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: { usePointStyle: true, padding: 20 }
+            }
+        }
+    }
+});
+
+function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+}
+</script>
+
+</body>
+</html>

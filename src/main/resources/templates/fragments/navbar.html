@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="navbar" class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+        <img th:src="@{/images/storesync.png}" alt="Logo">
+        <span>StoreSync</span>
+    </div>
+
+    <ul class="sidebar-menu">
+        <li>
+            <a th:href="@{/dashboard}" class="menu-item" th:classappend="${currentPage == 'dashboard'} ? 'active' : ''">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/products}" class="menu-item" th:classappend="${currentPage == 'products'} ? 'active' : ''">
+                <i class="fas fa-box"></i>
+                <span>Products</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/products/add}" class="menu-item" th:classappend="${currentPage == 'add-product'} ? 'active' : ''">
+                <i class="fas fa-plus-circle"></i>
+                <span>Add Product</span>
+            </a>
+        </li>
+        <li class="menu-divider"></li>
+        <li>
+            <form th:action="@{/logout}" method="post" id="logoutForm">
+                <a href="javascript:void(0)" onclick="document.getElementById('logoutForm').submit();" class="menu-item logout-link">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </form>
+        </li>
+    </ul>
+    
+    <div class="sidebar-footer">
+        <div class="user-info">
+            <div class="user-avatar">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="user-details">
+                <p class="user-name" th:text="${username}">User</p>
+                <p class="user-role">Administrator</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

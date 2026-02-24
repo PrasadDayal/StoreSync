@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Product | StoreSync</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/add-product.css}">
+    <link rel="icon" type="image/png" th:href="@{/images/storesync.png}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<div class="main">
+    <button class="hamburger" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="dashboard-header">
+        <div class="header-content">
+            <h1 class="project-title">Add New Product</h1>
+            <p class="project-tagline">Create a new entry for your inventory</p>
+        </div>
+    </div>
+
+    <div class="table-card" style="max-width: 600px; margin: 0 auto;">
+        <form th:action="@{/products/save}" th:object="${product}" method="post" 
+              style="display: flex; flex-direction: column; gap: 24px;">
+            
+            <div class="form-group" style="display: flex; flex-direction: column; gap: 10px;">
+                <label style="font-weight: 600; color: var(--text-main); font-size: 14px;">
+                    <i class="fas fa-tag"></i> Product Name
+                </label>
+                <input type="text" th:field="*{name}" placeholder="Enter product name (e.g. Laptop)" required
+                       style="padding: 14px 18px; border-radius: 12px; border: 1px solid #e2e8f0; font-family: inherit; font-size: 15px; background: #f8fafc;">
+            </div>
+
+            <div class="form-group" style="display: flex; flex-direction: column; gap: 10px;">
+                <label style="font-weight: 600; color: var(--text-main); font-size: 14px;">
+                    <i class="fas fa-layer-group"></i> Quantity
+                </label>
+                <input type="number" th:field="*{quantity}" placeholder="Enter initial quantity" required
+                       style="padding: 14px 18px; border-radius: 12px; border: 1px solid #e2e8f0; font-family: inherit; font-size: 15px; background: #f8fafc;">
+            </div>
+
+            <div class="form-group" style="display: flex; flex-direction: column; gap: 10px;">
+                <label style="font-weight: 600; color: var(--text-main); font-size: 14px;">
+                    <i class="fas fa-dollar-sign"></i> Price (&#8377;)
+                </label>
+                <input type="number" th:field="*{price}" placeholder="Enter unit price" required
+                       style="padding: 14px 18px; border-radius: 12px; border: 1px solid #e2e8f0; font-family: inherit; font-size: 15px; background: #f8fafc;">
+            </div>
+
+            <div style="display: flex; gap: 16px; margin-top: 10px;">
+                <button type="submit" class="view-all-btn" style="flex: 2; padding: 16px; font-size: 16px;">
+                    <i class="fas fa-save"></i> Save Product
+                </button>
+                <a th:href="@{/products}" class="view-all-btn" 
+                   style="flex: 1; padding: 16px; font-size: 16px; background-color: #f1f5f9; color: var(--text-muted); text-align: center;">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('active');
+}
+</script>
+
+</body>
+</html>
