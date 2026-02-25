@@ -101,6 +101,20 @@ java -jar target/Inventory-0.0.1-SNAPSHOT.jar
 - [ ] Multi-store support
 - [ ] Cloud deployment
 
+
+## 📸 Screenshots
+
+### 🔐 Login Page
+![Login](Screenshots/login.png)
+
+### 📝 Register Page
+![Login](Screenshots/registration.png)
+
+### 📊 Dashboard
+![Dashboard](Screenshots/dashboard.png)
+
+### 📦 Product Management
+![Products](Screenshots/products.png)
 ## 📄 License
 
 This project is licensed under the MIT License.
