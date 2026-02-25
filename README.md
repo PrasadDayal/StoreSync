@@ -115,6 +115,10 @@ java -jar target/Inventory-0.0.1-SNAPSHOT.jar
 
 ### 📦 Product Management
 ![Products](Screenshots/products.png)
+
+### ➕ Add Product 
+![Products](Screenshots/add_products.png)
+
 ## 📄 License
 
 This project is licensed under the MIT License.
